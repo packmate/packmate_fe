@@ -24,10 +24,10 @@ class App extends React.Component {
           /> */}
           {/* <Route exact path='/user-lists' render={ }
           /> */}
-          <Route exact path='*' component={SavedListPage} /> 
-          {/* <Route exact path='*' render={ () => 
+          {/* <Route exact path='*' component={SavedListPage} />  */}
+          <Route exact path='*' render={ () => 
             <Error error={this.state.error}/> }
-          />  */}
+          /> 
         </Switch>
       </main>
     ) 
