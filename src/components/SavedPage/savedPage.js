@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SavedListPage extends React.Component {
+class SavedPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -113,4 +113,4 @@ class SavedListPage extends React.Component {
   }
 }
 
-export default SavedListPage;
+export default SavedPage;
