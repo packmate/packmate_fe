@@ -4,6 +4,8 @@ import Error from '../Error/Error'
 import Header from '../header/Header'
 import { Route, Switch } from 'react-router-dom'
 import SavedListPage from '../SavedPage/savedPage'
+import Home from '../Home/Home'
+
 
 class App extends React.Component {
   constructor() {
@@ -18,8 +20,9 @@ class App extends React.Component {
       <main className='main'>
         <Header />
         <Switch>
-          {/* <Route exact path='/' render={ }
-          /> */}
+          <Route exact path='/' render={ () => {
+            <Home />} }
+          />
           {/* <Route exact path='/items' render={ }
           /> */}
           {/* <Route exact path='/user-lists' render={ }
