@@ -6,13 +6,33 @@ import ReactRouterDom, { Route, Switch, Redirect } from 'react-router-dom'
 import Home from '../Home/Home'
 import SavedPage from '../SavedPage/savedPage'
 import ListPage from '../ListPage/ListPage'
+import fetchItems from '../../apiCall'
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
       error: "",
+      tripSelection: "",
+      packItems: []
     }
+  }
+
+  createList = () => {
+    const { tripSelection } = this.state;
+    fetchItems(tripSelection)
+    .then(data => {
+      this.setState({packItems: data })
+    })
+    .catch(error => {
+      this.setState({
+        error: error.message
+      })
+    })
+  }
+
+  onChange = (event) => {
+    this.setState({ tripSelection: event.target.value })
   }
 
   componentDidCatch(error) {
@@ -26,11 +46,11 @@ class App extends React.Component {
       <main className='main'>
         <Header />
         <Switch>
-          <Route exact path='/' component={Home} />
-          {/* <Route exact path='/createlist' component={ListPage} /> */}
+          <Route exact path='/' component={ () => 
+            <Home onChange={this.onChange} createList={this.createList} value={this.state.tripSelection}/> } 
+          />
           <Route exact path='/mylist' component={SavedPage} />
-          <Route path='/error' render={() => <Error error={error} />} />
-          <Redirect to='/error' />
+          <Route path='*' render={() => <Error error={error} />} />
         </Switch>
       </main>
     );
