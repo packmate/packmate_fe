@@ -1,9 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
+
 .header {
   display: flex;
   align-items: center;
+  margin-bottom: 4.5em;
+}
+
+.app-name {
+  font-family: "Cabin Sketch", cursive;
+  color: rgb(59, 40, 12);
+  font-size: 6rem;
+  font-weight: 600;
+  border: 2px solid rgb(13, 63, 13);
+  border-radius: 25px;
+  background-color: rgba(240, 248, 255, 0.6);
+  padding: 0px 95px 0px 95px;
+  margin: 0;
 }
 
 .logo {
-  width: 12em; 
-  height: auto;
+  height: 12em;
+  width: 13em;
+  margin: .8em 3em 0em 1.5em;
+  padding: 2px 0px 8px 0px;
+  border: 2px solid rgb(13, 63, 13);
+  border-radius: 100px;
+  background-color: rgba(240, 248, 255, 0.6);
 }

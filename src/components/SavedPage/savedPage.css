@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
+
+.saved-header,.items-header, .no-list-message, .list-name-buttons, .item-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28vw;
+  font-size: 4em;
+  font-family: "Cabin Sketch", cursive;
+  font-weight: 600;
+  color: rgb(59, 40, 12);
+  border: 2px solid rgb(13, 63, 13);
+  border-radius: 25px;
+  background-color: rgba(240, 248, 255, 0.6);
+  margin: 0 auto;
+  padding-bottom: .1em;
+}
+.no-list-message, .list-name-buttons, .item-list{
+  font-size: 3em;
+  font-weight: 100;
+  width: 18vw;
+  margin-top: .5em;
+  font-family: "Cabin Sketch", cursive;
+  padding: 0;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.check-mark {
+  margin-left: 0.5em;
+}
+
+
