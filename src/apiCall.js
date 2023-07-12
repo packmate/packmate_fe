@@ -19,3 +19,6 @@ const fetchItems = async (tripSelection) => {
 }
 
 export default fetchItems
+
+
+
