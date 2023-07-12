@@ -25,6 +25,7 @@ class App extends React.Component {
     const { tripSelection } = this.state;
     fetchItems(tripSelection)
       .then(data => {
+
         this.setState({ packItems: data.data.items })
       })
       .catch(error => {
@@ -32,13 +33,13 @@ class App extends React.Component {
           error: error.message
         })
       })
-    console.log('state', this.state)
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.packItems !== this.state.packItems) {
       this.props.history.push('/lists')
     }
+ 
   }
 
   onChange = (event) => {
@@ -63,7 +64,9 @@ class App extends React.Component {
 
   render() {
     const { error } = this.state;
+
     const { packItems, selectedItems } = this.state;
+
 
     return (
       <main className='main'>
@@ -71,6 +74,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={() =>
             <Home onChange={this.onChange} createList={this.createList} value={this.state.tripSelection} />}
+
           />
           <Route exact path='/lists' component={() =>
             <ListPage
@@ -80,6 +84,7 @@ class App extends React.Component {
               handleCheckboxChange={this.handleCheckboxChange}
             />}
           />
+
 
           <Route exact path='/mylist' component={SavedPage} />
           <Route path='*' render={() => <Error error={error} />} />

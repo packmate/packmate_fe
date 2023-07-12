@@ -2,9 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom'
 
 const ListPage = ({ packItems, selectedItems, fetchItems, handleCheckboxChange }) => {
+
     const history = useHistory();
 
     const makeList = packItems.map(item => {
+
         return (
             <div key={item.id}>
                 <input
@@ -23,8 +25,10 @@ const ListPage = ({ packItems, selectedItems, fetchItems, handleCheckboxChange }
 
     return (
         <div>
+
             {makeList}
             <button onClick={handleButtonClick}>Submit</button>
+
         </div>
     )
 };
