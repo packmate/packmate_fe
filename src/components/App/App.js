@@ -9,6 +9,7 @@ import ListPage from '../ListPage/ListPage'
 import fetchItems from '../../apiCall'
 import { useQuery, useMutation } from '@apollo/client'
 
+
 class App extends React.Component {
   constructor() {
     super()
@@ -16,16 +17,15 @@ class App extends React.Component {
       error: "",
       tripSelection: "",
       packItems: [],
-      selectedItems: []
+      selectedItems: [],
+      listName: "",
     }
   }
 
   createList = () => {
-
     const { tripSelection } = this.state;
     fetchItems(tripSelection)
       .then(data => {
-
         this.setState({ packItems: data.data.items })
       })
       .catch(error => {
@@ -39,7 +39,6 @@ class App extends React.Component {
     if (prevState.packItems !== this.state.packItems) {
       this.props.history.push('/lists')
     }
- 
   }
 
   onChange = (event) => {
@@ -61,10 +60,12 @@ class App extends React.Component {
     })
   }
 
+  handleNameChange = (event) => {
+    this.setState({ listName: event.target.value })
+  }
 
   render() {
     const { error } = this.state;
-
     const { packItems, selectedItems } = this.state;
 
 
@@ -78,14 +79,13 @@ class App extends React.Component {
           />
           <Route exact path='/lists' component={() =>
             <ListPage
-              packItems={packItems}
-              selectedItems={selectedItems}
-              fetchItems={this.fetchItems}
+              packItems={this.state.packItems}
+              selectedItems={this.state.selectedItems}
               handleCheckboxChange={this.handleCheckboxChange}
+              handleNameChange={this.handleNameChange}
+              listName={this.state.listName}
             />}
           />
-
-
           <Route exact path='/mylist' component={SavedPage} />
           <Route path='*' render={() => <Error error={error} />} />
         </Switch>
