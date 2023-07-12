@@ -2,7 +2,8 @@ import React from 'react'
 import './Home.css'
 
 const Home = ({ createList, onChange, value }) => {
-  return(
+
+  return (
     <div className='dropdown'>
       <select className='trip-dropdown' onChange={onChange}>
         <option value={value}>{value}</option>
