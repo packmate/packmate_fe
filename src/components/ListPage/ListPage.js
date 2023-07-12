@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListPage = ({ items, selectedItems, fetchItems, handleCheckboxChange }) => {
+const ListPage = ({ packItems, selectedItems, fetchItems, handleCheckboxChange }) => {
     const makeList = (item) => {
         return (
             <div key={item.id}>
@@ -16,7 +16,7 @@ const ListPage = ({ items, selectedItems, fetchItems, handleCheckboxChange }) =>
 
     return (
         <div>
-            {items.map(makeList)}
+            {packItems.map(makeList)}
         </div>
     )
 };
@@ -24,4 +24,3 @@ const ListPage = ({ items, selectedItems, fetchItems, handleCheckboxChange }) =>
 export default ListPage;
 
 
-//
