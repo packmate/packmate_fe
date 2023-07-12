@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 const ListPage = ({ packItems, selectedItems, fetchItems, handleCheckboxChange }) => {
     const history = useHistory();
 
-    const makeList = (item) => {
+    const makeList = packItems.map(item => {
         return (
             <div key={item.id}>
                 <input
@@ -15,7 +15,7 @@ const ListPage = ({ packItems, selectedItems, fetchItems, handleCheckboxChange }
                 <span>{item.name}</span>
             </div>
         )
-    }
+    })
 
     const handleButtonClick = () => {
         history.push('/mylist');
@@ -23,7 +23,7 @@ const ListPage = ({ packItems, selectedItems, fetchItems, handleCheckboxChange }
 
     return (
         <div>
-            {packItems.map(makeList)}
+            {makeList}
             <button onClick={handleButtonClick}>Submit</button>
         </div>
     )
