@@ -20,11 +20,9 @@
 //     }
 //   };
 
-//   handleItemToggle = (listName, itemId) => {
+//   handleItemToggle = (itemId) => {
 //     this.setState((prevState) => {
-//       const { savedLists } = prevState;
-//       const selectedListIndex = savedLists.findIndex((list) => list.name === listName);
-//       const selectedList = savedLists[selectedListIndex];
+//       const { selectedList } = prevState;
 //       const updatedItems = selectedList.items.map((item) => {
 //         if (item.id === itemId) {
 //           return { ...item, packed: !item.packed };
@@ -32,45 +30,41 @@
 //         return item;
 //       });
 //       const updatedList = { ...selectedList, items: updatedItems };
-//       const updatedSavedLists = [...savedLists];
-//       updatedSavedLists[selectedListIndex] = updatedList;
-
-//       return {
-//         savedLists: updatedSavedLists,
-//       };
+//       return { selectedList: updatedList };
 //     });
 //   };
 
 //   render() {
-//     const { savedLists } = this.state;
-//     const { selectedList } = this.state;
+//     const { savedLists, selectedList } = this.state;
 //     const listName = selectedList ? selectedList.name : "My List";
-  
-//     let listItems = [];
-//     if (selectedList && Array.isArray(selectedList.items)) {
-//       listItems = selectedList.items;
-//     }
+//     const showBackButton = selectedList && selectedList.items && selectedList.items.length > 0;
   
 //     return (
 //       <div>
-//         <Link to="/" className="home-button">Back to Home</Link>
+//         {showBackButton ? (
+//           <div className="button-container">
+//             <Link to="/mylist" className="back-button">Back to Saved Lists</Link>
+//           </div>
+//         ) : (
+//           <div className="button-container">
+//             <Link to="/" className="home-button">Back to Home</Link>
+//           </div>
+//         )}
 //         {selectedList ? (
 //           <div>
 //             <h1 className="saved-header">{listName}</h1>
 //             <ul className="item-list">
-//               {listItems.map((item) => (
+//               {selectedList.items.map((item) => (
 //                 <li key={item.id}>
-//                   <label>
+//                   <label className={item.packed ? "item-packed" : ""}>
 //                     <input
 //                       type="checkbox"
 //                       className="checkbox"
 //                       checked={item.packed}
-//                       onChange={() =>
-//                         this.handleItemToggle(selectedList.name, item.id)
-//                       }
+//                       onChange={() => this.handleItemToggle(item.id)}
 //                     />
-//                     {item.name}
-//                     {item.packed && <span className="check-mark">✅</span>}
+//                     <span className={item.packed ? "item-crossed" : ""}>{item.name}</span>
+//                     {item.packed && <span className="check-mark"></span>}
 //                   </label>
 //                 </li>
 //               ))}
@@ -102,6 +96,7 @@
 //       </div>
 //     );
 //   }
+  
 // }
 
 // export default SavedPage;
@@ -127,11 +122,9 @@ class SavedPage extends React.Component {
     }
   };
 
-  handleItemToggle = (listName, itemId) => {
+  handleItemToggle = (itemId) => {
     this.setState((prevState) => {
-      const { savedLists } = prevState;
-      const selectedListIndex = savedLists.findIndex((list) => list.name === listName);
-      const selectedList = savedLists[selectedListIndex];
+      const { selectedList } = prevState;
       const updatedItems = selectedList.items.map((item) => {
         if (item.id === itemId) {
           return { ...item, packed: !item.packed };
@@ -139,12 +132,7 @@ class SavedPage extends React.Component {
         return item;
       });
       const updatedList = { ...selectedList, items: updatedItems };
-      const updatedSavedLists = [...savedLists];
-      updatedSavedLists[selectedListIndex] = updatedList;
-
-      return {
-        savedLists: updatedSavedLists,
-      };
+      return { selectedList: updatedList };
     });
   };
 
@@ -152,6 +140,7 @@ class SavedPage extends React.Component {
     const { savedLists, selectedList } = this.state;
     const listName = selectedList ? selectedList.name : "My List";
     const showBackButton = selectedList && selectedList.items && selectedList.items.length > 0;
+    const allItemsChecked = selectedList && selectedList.items && selectedList.items.every(item => item.packed);
 
     return (
       <div>
@@ -170,20 +159,23 @@ class SavedPage extends React.Component {
             <ul className="item-list">
               {selectedList.items.map((item) => (
                 <li key={item.id}>
-                  <label>
+                  <label className={item.packed ? "item-packed" : ""}>
                     <input
                       type="checkbox"
                       className="checkbox"
                       checked={item.packed}
-                      onChange={() =>
-                        this.handleItemToggle(selectedList.name, item.id)
-                      }
+                      onChange={() => this.handleItemToggle(item.id)}
                     />
-                    {item.name}
-                    {item.packed && <span className="check-mark">✅</span>}
+                    <span className={item.packed ? "item-crossed" : ""}>{item.name}</span>
+                    {item.packed && <span className="check-mark"></span>}
                   </label>
                 </li>
               ))}
+              {allItemsChecked && (
+                <li>
+                  <p className="ready-message">You're ready for your trip!!</p>
+                </li>
+              )}
             </ul>
           </div>
         ) : (
@@ -215,4 +207,3 @@ class SavedPage extends React.Component {
 }
 
 export default SavedPage;
-
