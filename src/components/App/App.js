@@ -8,6 +8,7 @@ import SavedPage from '../SavedPage/savedPage'
 import ListPage from '../ListPage/ListPage'
 import fetchItems from '../../apiCall'
 import { useQuery, useMutation } from '@apollo/client'
+import { useHistory } from 'react-router-dom'
 
 
 class App extends React.Component {
@@ -61,7 +62,8 @@ class App extends React.Component {
   }
 
   handleNameChange = (event) => {
-    this.setState({ listName: event.target.value })
+    const { value } = event.target
+    this.setState({ listName: value })
   }
 
   render() {
@@ -77,15 +79,17 @@ class App extends React.Component {
             <Home onChange={this.onChange} createList={this.createList} value={this.state.tripSelection} />}
 
           />
-          <Route exact path='/lists' component={() =>
+          <Route exact path='/lists'>
             <ListPage
               packItems={this.state.packItems}
               selectedItems={this.state.selectedItems}
               handleCheckboxChange={this.handleCheckboxChange}
               handleNameChange={this.handleNameChange}
               listName={this.state.listName}
-            />}
-          />
+            />
+
+          </Route>
+
           <Route exact path='/mylist' component={SavedPage} />
           <Route path='*' render={() => <Error error={error} />} />
         </Switch>
