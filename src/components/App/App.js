@@ -8,6 +8,8 @@ import SavedPage from '../SavedPage/savedPage'
 import ListPage from '../ListPage/ListPage'
 import fetchItems from '../../apiCall'
 import { useQuery, useMutation } from '@apollo/client'
+import { useHistory } from 'react-router-dom'
+
 
 class App extends React.Component {
   constructor() {
@@ -16,16 +18,15 @@ class App extends React.Component {
       error: "",
       tripSelection: "",
       packItems: [],
-      selectedItems: []
+      selectedItems: [],
+      listName: "",
     }
   }
 
   createList = () => {
-
     const { tripSelection } = this.state;
     fetchItems(tripSelection)
       .then(data => {
-
         this.setState({ packItems: data.data.items })
       })
       .catch(error => {
@@ -39,7 +40,6 @@ class App extends React.Component {
     if (prevState.packItems !== this.state.packItems) {
       this.props.history.push('/lists')
     }
- 
   }
 
   onChange = (event) => {
@@ -61,10 +61,13 @@ class App extends React.Component {
     })
   }
 
+  handleNameChange = (event) => {
+    const { value } = event.target
+    this.setState({ listName: value })
+  }
 
   render() {
     const { error } = this.state;
-
     const { packItems, selectedItems } = this.state;
 
 
@@ -76,15 +79,16 @@ class App extends React.Component {
             <Home onChange={this.onChange} createList={this.createList} value={this.state.tripSelection} />}
 
           />
-          <Route exact path='/lists' component={() =>
+          <Route exact path='/lists'>
             <ListPage
-              packItems={packItems}
-              selectedItems={selectedItems}
-              fetchItems={this.fetchItems}
+              packItems={this.state.packItems}
+              selectedItems={this.state.selectedItems}
               handleCheckboxChange={this.handleCheckboxChange}
-            />}
-          />
+              handleNameChange={this.handleNameChange}
+              listName={this.state.listName}
+            />
 
+          </Route>
 
           <Route exact path='/mylist' component={SavedPage} />
           <Route path='*' render={() => <Error error={error} />} />
