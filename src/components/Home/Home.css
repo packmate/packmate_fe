@@ -22,7 +22,7 @@
   padding-left: 1em;
 }
 
-.trip-submit {
+.trip-submit, .saved-lists-btn {
   margin-left: 1em;
   border-radius: 15px;
   height: 3.5em;

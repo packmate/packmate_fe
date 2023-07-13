@@ -51,6 +51,7 @@ return (
             value={listName}
             onChange={handleNameChange}
             placeholder="Enter List Name"
+            className="list-name-input"
         />
         <div className="list-name-container">
             {packItems.map((item) => (
@@ -72,8 +73,8 @@ return (
             />
             <button onClick={handleAddCustomItem}>Add Item</button>
         </div>
-        <button disabled={!formValid} onClick={handleButtonClick} className="submit-list-button">Submit</button>
             {!formValid && <p className="invalid-form">Please fill out the list name and select at least one item!</p>}
+        <button disabled={!formValid} onClick={handleButtonClick} className="submit-list-button">Submit</button>
     </div>
     );
 };
