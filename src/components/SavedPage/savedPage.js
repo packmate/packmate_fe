@@ -5,41 +5,10 @@ class SavedPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      savedLists: [],
       selectedList: null,
+      savedLists: props.savedLists,
     };
   }
-
-  componentDidMount() {
-    // Simulating two trips
-    const trip1 = {
-      name: 'List 1',
-      items: [
-        { id: 1, name: 'Item A', packed: false, crossedOut: false },
-        { id: 2, name: 'Item B', packed: false, crossedOut: false },
-        { id: 3, name: 'Item C', packed: false, crossedOut: false },
-      ],
-    };
-
-    const trip2 = {
-      name: 'List 2',
-      items: [
-        { id: 4, name: 'Item X', packed: false, crossedOut: false },
-        { id: 5, name: 'Item Y', packed: false, crossedOut: false },
-        { id: 6, name: 'Item Z', packed: false, crossedOut: false },
-      ],
-    };
-
-    this.setState({
-      savedLists: [trip1, trip2],
-    });
-  }
-
-  handleSaveList = (listName, listItems) => {
-    this.setState((prevState) => ({
-      savedLists: [...prevState.savedLists, { name: listName, items: listItems }],
-    }));
-  };
 
 
   handleListClick = (listName) => {
@@ -73,8 +42,9 @@ class SavedPage extends React.Component {
   };
 
   render() {
-    const { savedLists, selectedList } = this.state;
-
+    const { savedLists } = this.state;
+    const { selectedList } = this.state;
+  
     return (
       <div>
         {selectedList ? (
@@ -85,7 +55,8 @@ class SavedPage extends React.Component {
                 <li key={item.id}>
                   <label>
                     <input
-                      type="checkbox" className='checkbox'
+                      type="checkbox"
+                      className="checkbox"
                       checked={item.packed}
                       onChange={() => this.handleItemToggle(selectedList.name, item.id)}
                     />
@@ -100,7 +71,7 @@ class SavedPage extends React.Component {
           <div>
             <h1 className="saved-header">My List</h1>
             {savedLists.length === 0 ? (
-              <p className="no-list-message">No list Yet!</p>
+              <p className="no-list-message">No list yet!</p>
             ) : (
               <div>
                 <ul>
@@ -119,6 +90,7 @@ class SavedPage extends React.Component {
       </div>
     );
   }
+  
 }
 
 export default SavedPage;
