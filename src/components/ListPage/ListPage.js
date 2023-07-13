@@ -9,7 +9,8 @@ const ListPage = ({
     handleNameChange,
     listName,
     handleSaveList,
-    resetState
+    resetState,
+    formValid
     }) => {
 
 const history = useHistory();
@@ -71,7 +72,8 @@ return (
             />
             <button onClick={handleAddCustomItem}>Add Item</button>
         </div>
-        <button onClick={handleButtonClick} className="submit-list-button">Submit</button>
+        <button disabled={!formValid} onClick={handleButtonClick} className="submit-list-button">Submit</button>
+            {!formValid && <p className="invalid-form">Please fill out the list name and select at least one item!</p>}
     </div>
     );
 };
