@@ -1,7 +1,9 @@
 import React from 'react'
 import './Home.css'
+import { Link } from 'react-router-dom'
 
 const Home = ({ createList, onChange, value }) => {
+const isDisabled = !value
 
   return (
     <div className='dropdown'>
@@ -15,7 +17,10 @@ const Home = ({ createList, onChange, value }) => {
         <option value="Climbing">Climbing</option>
         <option value="Custom">Custom</option>
       </select>
-      <button className='trip-submit' onClick={createList}>SUBMIT</button>
+      <button className='trip-submit' onClick={createList} disabled={isDisabled}>SUBMIT</button>
+      <Link to='mylist' className='mylist-btn'>
+        <button className='saved-lists-btn'>Saved Lists</button>
+      </Link>
     </div>
   )
 }
