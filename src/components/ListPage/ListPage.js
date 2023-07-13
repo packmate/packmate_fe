@@ -1,37 +1,35 @@
-//     const makeList = packItems.map(item => {
-//         return (
-//             <div key={item.id}>
-//                 <input
-//                     type='checkbox'
-//                     checked={selectedItems.includes(item.id)}
-//                     onChange={(e) => handleCheckboxChange(item.id)}
-//                 />
-//                 <span>{item.name}</span>
-//             </div>
-//         )
-//     })
-
-//     
-//     return (
-//         <div>
-//             <input type="text" value={listName} onChange={handleNameChange} placeholder="Enter List Name" />
-//             {makeList}
-//             <button onClick={handleButtonClick}>Submit</button>
-
-//         </div>
-
-
-
-import React from 'react';
+import React, { useState } from 'react';
 import './ListPage.css'
 import { useHistory } from 'react-router-dom'
 
 const ListPage = ({ packItems, selectedItems, handleCheckboxChange, handleNameChange, listName }) => {
     const history = useHistory();
+    const [customItem, setCustomItem] = useState('');
+    const [customItems, setCustomItems] = useState([]);
 
     const handleButtonClick = () => {
         history.push('/mylist');
     };
+
+    const handleAddCustomItem = () => {
+        if (customItem.trim() !== '') {
+            setCustomItems([...customItems, customItem.trim()]);
+            setCustomItem('')
+        }
+    }
+
+    const displayCustomItems = () => {
+        return customItems.map((item, index) => (
+            <div key={index}>
+                <input
+                    type="checkbox"
+                    checked={selectedItems.includes(item)}
+                    onChange={() => handleCheckboxChange(item)}
+                />
+                <span>{item}</span>
+            </div>
+        ))
+    }
 
     return (
         <div>
@@ -47,9 +45,11 @@ const ListPage = ({ packItems, selectedItems, handleCheckboxChange, handleNameCh
                         <span>{item.name}</span>
                     </div>
                 ))}
+                {displayCustomItems()}
+                <input type="text" value={customItem} onChange={(e) => setCustomItem(e.target.value)} placeholder="Enter custom item" />
+                <button onClick={handleAddCustomItem}>Add Item</button>
                 <button onClick={handleButtonClick}>Submit</button>
             </div>
-
         </div>
     );
 };
