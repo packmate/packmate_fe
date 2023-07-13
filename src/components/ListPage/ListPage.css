@@ -45,6 +45,20 @@
   border: 2px solid rgb(13, 63, 13);
 }
 
+.add-item-button, .custom-item-input {
+  background-color: rgba(240, 248, 255, 0.7);
+  color: rgb(59, 40, 12);
+  font-family: "Rye", cursive;
+  background-color: rgba(240, 248, 255, 0.7);
+  border-radius: 10px;
+  font-size: medium;
+  height: 30px;
+}
+.custom-item-input{
+  padding: 5px;
+  margin-bottom: 2em;
+}
+
 .list-name-input {
   width: 15em;
   height: 1em;
