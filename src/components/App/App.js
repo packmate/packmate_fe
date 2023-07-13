@@ -20,6 +20,7 @@ class App extends React.Component {
       selectedItems: [],
       savedLists: [],
       listName: "",
+      formValid: false
     };
     this.handleSaveList = this.handleSaveList.bind(this);
   }
@@ -71,18 +72,20 @@ class App extends React.Component {
     };
     this.setState((prevState) => ({
       savedLists: [...prevState.savedLists, newList],
+      formValid: true
     }));
   };
 
   handleNameChange = (event) => {
-    const { value } = event.target;
-    this.setState({ listName: value });
+    this.setState({ listName: event.target.value });
+    this.state.formValid = true
   }
 
   resetState = () => {
     this.setState({
       selectedItems: [],
-      listName: ''
+      listName: '',
+      formValid: false
     })
   }
 
@@ -110,6 +113,7 @@ class App extends React.Component {
               handleNameChange={this.handleNameChange}
               listName={this.state.listName}
               resetState={this.resetState}
+              formValid={this.state.formValid}
             />
           </Route>
           <Route exact path="/mylist" component={() =>
