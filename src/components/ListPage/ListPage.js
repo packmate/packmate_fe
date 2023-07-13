@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./ListPage.css";
 import { useHistory } from "react-router-dom";
 
+
+   
 const ListPage = ({
   packItems,
   selectedItems,
@@ -9,6 +11,7 @@ const ListPage = ({
   handleNameChange,
   listName,
   handleSaveList,
+  resetState
 }) => {
   const history = useHistory();
   const [customItem, setCustomItem] = useState("");
@@ -18,7 +21,9 @@ const ListPage = ({
     const listName = `List`;
     handleSaveList(listName, selectedItems);
     history.push("/mylist");
+    resetState();
   };
+
 
   const handleAddCustomItem = () => {
     if (customItem.trim() !== "") {

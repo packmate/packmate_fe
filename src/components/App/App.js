@@ -79,8 +79,20 @@ class App extends React.Component {
     this.setState({ listName: value });
   }
 
+  resetState = () => {
+    this.setState({
+      selectedItems: [],
+      listName: ''
+    })
+  }
+
   render() {
-    const { error, packItems, selectedItems, savedLists } = this.state;
+
+
+
+
+    const { error, packItems, selectedItems, savedLists, listName } = this.state;
+
 
     return (
       <main className='main'>
@@ -97,6 +109,7 @@ class App extends React.Component {
               handleSaveList={this.handleSaveList}
               handleNameChange={this.handleNameChange}
               listName={this.state.listName}
+              resetState={this.resetState}
             />
           </Route>
           <Route exact path="/mylist" component={() =>
