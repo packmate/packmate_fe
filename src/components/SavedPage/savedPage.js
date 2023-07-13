@@ -44,21 +44,29 @@ class SavedPage extends React.Component {
   render() {
     const { savedLists } = this.state;
     const { selectedList } = this.state;
+    const listName = selectedList ? selectedList.name : "My List";
+  
+    let listItems = [];
+    if (selectedList && Array.isArray(selectedList.items)) {
+      listItems = selectedList.items;
+    }
   
     return (
       <div>
         {selectedList ? (
           <div>
-            <h1 className="saved-header">{selectedList.name}</h1>
+            <h1 className="saved-header">{listName}</h1>
             <ul className="item-list">
-              {selectedList.items.map((item) => (
+              {listItems.map((item) => (
                 <li key={item.id}>
                   <label>
                     <input
                       type="checkbox"
                       className="checkbox"
                       checked={item.packed}
-                      onChange={() => this.handleItemToggle(selectedList.name, item.id)}
+                      onChange={() =>
+                        this.handleItemToggle(selectedList.name, item.id)
+                      }
                     />
                     {item.name}
                     {item.packed && <span className="check-mark">✅</span>}
@@ -77,7 +85,10 @@ class SavedPage extends React.Component {
                 <ul>
                   {savedLists.map((list, index) => (
                     <li key={index}>
-                      <button className="list-name-buttons" onClick={() => this.handleListClick(list.name)}>
+                      <button
+                        className="list-name-buttons"
+                        onClick={() => this.handleListClick(list.name)}
+                      >
                         {list.name}
                       </button>
                     </li>
@@ -90,7 +101,6 @@ class SavedPage extends React.Component {
       </div>
     );
   }
-  
 }
 
 export default SavedPage;
