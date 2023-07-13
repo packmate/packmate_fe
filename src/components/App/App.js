@@ -59,6 +59,7 @@ class App extends React.Component {
         return { selectedItems: [...selectedItems, itemId] };
       }
     });
+    this.setState.formValid = true;
   }
 
   handleSaveList = (listName, selectedItems) => {
@@ -69,7 +70,6 @@ class App extends React.Component {
     });
     this.setState((prevState) => ({
       savedLists: [...prevState.savedLists, { name: listName, items: newList }],
-                  formValid: true
     }));
   };
 
