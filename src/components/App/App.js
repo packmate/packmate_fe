@@ -13,12 +13,15 @@ import { useHistory } from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       error: "",
       tripSelection: "",
       packItems: [],
       selectedItems: [],
+      savedLists: [],
+    };
+    this.handleSaveList = this.handleSaveList.bind(this);
       listName: "",
     }
   }
@@ -27,23 +30,21 @@ class App extends React.Component {
     const { tripSelection } = this.state;
     fetchItems(tripSelection)
       .then(data => {
-        this.setState({ packItems: data.data.items })
+        this.setState({ packItems: data.data.items });
       })
       .catch(error => {
-        this.setState({
-          error: error.message
-        })
-      })
+        this.setState({ error: error.message });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.packItems !== this.state.packItems) {
-      this.props.history.push('/lists')
+      this.props.history.push('/lists');
     }
   }
 
   onChange = (event) => {
-    this.setState({ tripSelection: event.target.value })
+    this.setState({ tripSelection: event.target.value });
   }
 
   componentDidCatch(error) {
@@ -54,13 +55,30 @@ class App extends React.Component {
     this.setState((prevState) => {
       const { selectedItems } = prevState;
       if (selectedItems.includes(itemId)) {
-        return { selectedItems: selectedItems.filter((id) => id !== itemId) }
+        return { selectedItems: selectedItems.filter((id) => id !== itemId) };
       } else {
-        return { selectedItems: [...selectedItems, itemId] }
+        return { selectedItems: [...selectedItems, itemId] };
       }
-    })
+    });
   }
 
+  handleSaveList = (listName, listItems) => {
+    const { savedLists } = this.state;
+    const newList = {
+      name: listName,
+      items: listItems.map((itemId) => {
+        const item = this.state.packItems.find((item) => item.id === itemId);
+        return { ...item, packed: false };
+      }),
+    };
+    this.setState((prevState) => ({
+      savedLists: [...prevState.savedLists, newList],
+    }));
+  };
+  
+  render() {
+    const { error, packItems, selectedItems, savedLists } = this.state;
+    
   handleNameChange = (event) => {
     const { value } = event.target
     this.setState({ listName: value })
@@ -70,20 +88,23 @@ class App extends React.Component {
     const { error } = this.state;
     const { packItems, selectedItems } = this.state;
 
-
     return (
       <main className='main'>
         <Header />
         <Switch>
           <Route exact path='/' component={() =>
             <Home onChange={this.onChange} createList={this.createList} value={this.state.tripSelection} />}
-
           />
           <Route exact path='/lists'>
             <ListPage
               packItems={this.state.packItems}
               selectedItems={this.state.selectedItems}
               handleCheckboxChange={this.handleCheckboxChange}
+              handleSaveList={this.handleSaveList}
+            />}
+          />
+          <Route exact path="/mylist" component={() =>
+            <SavedPage savedLists={savedLists} />} />
               handleNameChange={this.handleNameChange}
               listName={this.state.listName}
             />
@@ -98,4 +119,4 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App)
+export default withRouter(App);

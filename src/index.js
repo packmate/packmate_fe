@@ -20,15 +20,3 @@ root.render(
 )
 
 reportWebVitals();
-
-// ReactDOM.render(
-//   <BrowserRouter>
-//     <ApolloProvider client={client} >
-//       <React.StrictMode>
-//         <App />
-//       </React.StrictMode>
-//     </ApolloProvider>
-//   </BrowserRouter>,
-
-//   document.getElementById('root')
-// );

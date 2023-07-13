@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import './ListPage.css'
 import { useHistory } from 'react-router-dom'
+import './ListPage.css'
 
-const ListPage = ({ packItems, selectedItems, handleCheckboxChange, handleNameChange, listName }) => {
+const ListPage = ({ packItems, selectedItems, handleCheckboxChange, handleNameChange, listName, handleSaveList }) => {
     const history = useHistory();
     const [customItem, setCustomItem] = useState('');
     const [customItems, setCustomItems] = useState([]);
 
     const handleButtonClick = () => {
+//         const listNumber = 1;
+        const listName = `List ${listNumber}`;
+        handleSaveList(listName, selectedItems);
+        history.push('/mylist');
+      };
+
+    return (
+        <div className='list-page-container'>
+            <div className='list-name-container'>
         history.push('/mylist');
     };
 
@@ -42,13 +52,13 @@ const ListPage = ({ packItems, selectedItems, handleCheckboxChange, handleNameCh
                             checked={selectedItems.includes(item.id)}
                             onChange={() => handleCheckboxChange(item.id)}
                         />
-                        <span>{item.name}</span>
+                        <span className='item-name'>{item.name}</span>
                     </div>
                 ))}
                 {displayCustomItems()}
                 <input type="text" value={customItem} onChange={(e) => setCustomItem(e.target.value)} placeholder="Enter custom item" />
                 <button onClick={handleAddCustomItem}>Add Item</button>
-                <button onClick={handleButtonClick}>Submit</button>
+                <button onClick={handleButtonClick} className='submit-list-button'>Submit</button>
             </div>
         </div>
     );
