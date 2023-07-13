@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
 
-.saved-header,.items-header, .no-list-message, .list-name-buttons, .item-list, .home-button {
+.saved-header,.items-header, .no-list-message, .list-name-buttons, .item-list, .home-button, .back-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,11 @@
   padding-bottom: .1em;
 }
 
-.home-button {
+.button-container {
+  display: flex;
+}
+
+.home-button, .back-button {
   margin: .1em;
   width: 15vw;
   font-size: 2em;

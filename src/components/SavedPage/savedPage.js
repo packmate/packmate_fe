@@ -1,5 +1,6 @@
 // import React from 'react';
-// import './savedPage.css'
+// import { Link } from 'react-router-dom';
+// import './savedPage.css';
 
 // class SavedPage extends React.Component {
 //   constructor(props) {
@@ -9,7 +10,6 @@
 //       savedLists: props.savedLists,
 //     };
 //   }
-
 
 //   handleListClick = (listName) => {
 //     if (this.state.selectedList && this.state.selectedList.name === listName) {
@@ -53,6 +53,7 @@
   
 //     return (
 //       <div>
+//         <Link to="/" className="home-button">Back to Home</Link>
 //         {selectedList ? (
 //           <div>
 //             <h1 className="saved-header">{listName}</h1>
@@ -148,23 +149,26 @@ class SavedPage extends React.Component {
   };
 
   render() {
-    const { savedLists } = this.state;
-    const { selectedList } = this.state;
+    const { savedLists, selectedList } = this.state;
     const listName = selectedList ? selectedList.name : "My List";
-  
-    let listItems = [];
-    if (selectedList && Array.isArray(selectedList.items)) {
-      listItems = selectedList.items;
-    }
-  
+    const showBackButton = selectedList && selectedList.items && selectedList.items.length > 0;
+
     return (
       <div>
-        <Link to="/" className="home-button">Back to Home</Link>
+        {showBackButton ? (
+          <div className="button-container">
+            <Link to="/mylist" className="back-button">Back to Saved Lists</Link>
+          </div>
+        ) : (
+          <div className="button-container">
+            <Link to="/" className="home-button">Back to Home</Link>
+          </div>
+        )}
         {selectedList ? (
           <div>
             <h1 className="saved-header">{listName}</h1>
             <ul className="item-list">
-              {listItems.map((item) => (
+              {selectedList.items.map((item) => (
                 <li key={item.id}>
                   <label>
                     <input
@@ -211,3 +215,4 @@ class SavedPage extends React.Component {
 }
 
 export default SavedPage;
+
