@@ -10,7 +10,6 @@ import fetchItems from '../../apiCall'
 import { useQuery, useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -20,10 +19,9 @@ class App extends React.Component {
       packItems: [],
       selectedItems: [],
       savedLists: [],
+      listName: "",
     };
     this.handleSaveList = this.handleSaveList.bind(this);
-      listName: "",
-    }
   }
 
   createList = () => {
@@ -75,18 +73,14 @@ class App extends React.Component {
       savedLists: [...prevState.savedLists, newList],
     }));
   };
-  
-  render() {
-    const { error, packItems, selectedItems, savedLists } = this.state;
-    
+
   handleNameChange = (event) => {
-    const { value } = event.target
-    this.setState({ listName: value })
+    const { value } = event.target;
+    this.setState({ listName: value });
   }
 
   render() {
-    const { error } = this.state;
-    const { packItems, selectedItems } = this.state;
+    const { error, packItems, selectedItems, savedLists } = this.state;
 
     return (
       <main className='main'>
@@ -101,16 +95,12 @@ class App extends React.Component {
               selectedItems={this.state.selectedItems}
               handleCheckboxChange={this.handleCheckboxChange}
               handleSaveList={this.handleSaveList}
-            />}
-          />
-          <Route exact path="/mylist" component={() =>
-            <SavedPage savedLists={savedLists} />} />
               handleNameChange={this.handleNameChange}
               listName={this.state.listName}
             />
-
           </Route>
-
+          <Route exact path="/mylist" component={() =>
+            <SavedPage savedLists={savedLists} />} />
           <Route exact path='/mylist' component={SavedPage} />
           <Route path='*' render={() => <Error error={error} />} />
         </Switch>
