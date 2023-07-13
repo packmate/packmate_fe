@@ -5,8 +5,8 @@ const Home = ({ createList, onChange, value }) => {
 
   return (
     <div className='dropdown'>
-      <select className='trip-dropdown' onChange={onChange}>
-        <option value={value}>{value}</option>
+      <select className='trip-dropdown' value={value} onChange={onChange}>
+        <option value="" disabled selected>Select a Trip</option>
         <option value="Kayaking">Kayaking</option>
         <option value="Camping">Camping</option>
         <option value="Fishing">Fishing</option>
