@@ -60,17 +60,14 @@ class App extends React.Component {
     });
   }
 
-  handleSaveList = (listName, listItems) => {
-    const { savedLists } = this.state;
-    const newList = {
-      name: listName,
-      items: listItems.map((itemId) => {
-        const item = this.state.packItems.find((item) => item.id === itemId);
-        return { ...item, packed: false };
-      }),
-    };
+  handleSaveList = (listName, selectedItems) => {
+    const { savedLists, packItems } = this.state;
+    const newList = selectedItems.map((itemId) => {
+      const item = packItems.find((item) => item.id === itemId);
+      return { ...item, packed: false };
+    });
     this.setState((prevState) => ({
-      savedLists: [...prevState.savedLists, newList],
+      savedLists: [...prevState.savedLists, { name: listName, items: newList }],
     }));
   };
 
@@ -87,12 +84,7 @@ class App extends React.Component {
   }
 
   render() {
-
-
-
-
     const { error, packItems, selectedItems, savedLists, listName } = this.state;
-
 
     return (
       <main className='main'>
