@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import './ListPage.css'
 import { useHistory } from 'react-router-dom'
 
-const ListPage = ({ packItems, selectedItems, handleCheckboxChange, handleNameChange, listName }) => {
+const ListPage = ({ packItems, selectedItems, handleCheckboxChange, handleNameChange, listName, resetState }) => {
     const history = useHistory();
     const [customItem, setCustomItem] = useState('');
     const [customItems, setCustomItems] = useState([]);
 
     const handleButtonClick = () => {
         history.push('/mylist');
+        resetState();
     };
 
     const handleAddCustomItem = () => {

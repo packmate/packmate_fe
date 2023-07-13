@@ -66,9 +66,16 @@ class App extends React.Component {
     this.setState({ listName: value })
   }
 
+  resetState = () => {
+    this.setState({
+      selectedItems: [],
+      listName: ''
+    })
+  }
+
   render() {
-    const { error } = this.state;
-    const { packItems, selectedItems } = this.state;
+    const { error, packItems, selectedItems, listName } = this.state;
+
 
 
     return (
@@ -86,6 +93,7 @@ class App extends React.Component {
               handleCheckboxChange={this.handleCheckboxChange}
               handleNameChange={this.handleNameChange}
               listName={this.state.listName}
+              resetState={this.resetState}
             />
 
           </Route>
