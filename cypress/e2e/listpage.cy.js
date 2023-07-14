@@ -48,4 +48,22 @@ describe('List Page', () => {
     cy.get(".submit-list-button").click()
     cy.visit("localhost:3000/mylists")
   })
+
 });
+
+// context('when the packing items API fails', () => {
+//   beforeEach(() => {
+//     cy.intercept('POST', 'https://packmate-be-d3fb267b5fee.herokuapp.com/graphql', {
+//       statusCode: 500
+//     }).as('items');
+
+//     cy.visit('localhost:3000');
+//   })
+//   it('should display an error page when the packing items fail to fetch', () => {
+//     cy.get(".trip-dropdown").select('Camping')
+//     cy.get(".trip-submit").click()
+//     cy.wait('@items')
+//     cy.contains('Something went wrong')
+//   })
+
+// })
