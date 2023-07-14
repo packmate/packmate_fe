@@ -53,13 +53,22 @@ class App extends React.Component {
   handleCheckboxChange = (itemId) => {
     this.setState((prevState) => {
       const { selectedItems } = prevState;
+      let updatedSelectedItems;
       if (selectedItems.includes(itemId)) {
-        return { selectedItems: selectedItems.filter((id) => id !== itemId) };
+        updatedSelectedItems = selectedItems.filter((id) => id !== itemId);
       } else {
-        return { selectedItems: [...selectedItems, itemId] };
+        updatedSelectedItems = [...selectedItems, itemId];
       }
+      return { selectedItems: updatedSelectedItems };
+    }, () => {
+      const { listName, selectedItems } = this.state;
+      const isFormValid = listName.trim() !== "" && selectedItems.length >= 1;
+      this.setState({ formValid: isFormValid });
     });
-  }
+  };
+
+
+
 
   handleSaveList = (listName, selectedItems) => {
     const { savedLists, packItems } = this.state;
@@ -69,13 +78,14 @@ class App extends React.Component {
     });
     this.setState((prevState) => ({
       savedLists: [...prevState.savedLists, { name: listName, items: newList }],
-                  formValid: true
     }));
   };
 
   handleNameChange = (event) => {
     this.setState({ listName: event.target.value });
-    this.state.formValid = true
+    const { selectedItems } = this.state;
+    const isFormValid = event.target.value.trim() !== "" && selectedItems.length >= 1;
+    this.setState({ formValid: isFormValid });
   }
 
   resetState = () => {
