@@ -1,5 +1,6 @@
 import React from 'react';
-import './savedPage.css'
+import { Link } from 'react-router-dom';
+import './savedPage.css';
 
 class SavedPage extends React.Component {
   constructor(props) {
@@ -10,7 +11,6 @@ class SavedPage extends React.Component {
     };
   }
 
-
   handleListClick = (listName) => {
     if (this.state.selectedList && this.state.selectedList.name === listName) {
       this.setState({ selectedList: null });
@@ -20,11 +20,9 @@ class SavedPage extends React.Component {
     }
   };
 
-  handleItemToggle = (listName, itemId) => {
+  handleItemToggle = (itemId) => {
     this.setState((prevState) => {
-      const { savedLists } = prevState;
-      const selectedListIndex = savedLists.findIndex((list) => list.name === listName);
-      const selectedList = savedLists[selectedListIndex];
+      const { selectedList } = prevState;
       const updatedItems = selectedList.items.map((item) => {
         if (item.id === itemId) {
           return { ...item, packed: !item.packed };
@@ -32,47 +30,77 @@ class SavedPage extends React.Component {
         return item;
       });
       const updatedList = { ...selectedList, items: updatedItems };
-      const updatedSavedLists = [...savedLists];
-      updatedSavedLists[selectedListIndex] = updatedList;
+      return { selectedList: updatedList };
+    });
+  };
+
+  handleAddCustomItem = (itemName) => {
+    const { selectedList } = this.state;
+    const customItem = {
+      id: Math.random().toString(36).substring(7),
+      name: itemName,
+      packed: false,
+    };
+
+    this.setState((prevState) => {
+      const updatedList = {
+        ...selectedList,
+        items: [...selectedList.items, customItem],
+      };
+      const updatedSavedLists = prevState.savedLists.map((list) => {
+        if (list.name === selectedList.name) {
+          return updatedList;
+        }
+        return list;
+      });
 
       return {
+        selectedList: updatedList,
         savedLists: updatedSavedLists,
       };
     });
   };
 
   render() {
-    const { savedLists } = this.state;
-    const { selectedList } = this.state;
+    const { savedLists, selectedList } = this.state;
     const listName = selectedList ? selectedList.name : "My List";
-  
-    let listItems = [];
-    if (selectedList && Array.isArray(selectedList.items)) {
-      listItems = selectedList.items;
-    }
-  
+    const showBackButton = selectedList && selectedList.items && selectedList.items.length > 0;
+    const allItemsChecked = selectedList && selectedList.items && selectedList.items.every(item => item.packed);
+
     return (
       <div>
+        {showBackButton ? (
+          <div className="button-container">
+            <Link to="/mylist" className="back-button">Back to Saved Lists</Link>
+          </div>
+        ) : (
+          <div className="button-container">
+            <Link to="/" className="home-button">Back to Home</Link>
+          </div>
+        )}
         {selectedList ? (
           <div>
             <h1 className="saved-header">{listName}</h1>
             <ul className="item-list">
-              {listItems.map((item) => (
+              {selectedList.items.map((item) => (
                 <li key={item.id}>
-                  <label>
+                  <label className={item.packed ? "item-packed" : ""}>
                     <input
                       type="checkbox"
                       className="checkbox"
                       checked={item.packed}
-                      onChange={() =>
-                        this.handleItemToggle(selectedList.name, item.id)
-                      }
+                      onChange={() => this.handleItemToggle(item.id)}
                     />
-                    {item.name}
-                    {item.packed && <span className="check-mark">✅</span>}
+                    <span className={item.packed ? "item-crossed" : ""}>{item.name}</span>
+                    {item.packed && <span className="check-mark"></span>}
                   </label>
                 </li>
               ))}
+              {allItemsChecked && (
+                <li>
+                  <p className="ready-message">You're ready for your trip!!</p>
+                </li>
+              )}
             </ul>
           </div>
         ) : (

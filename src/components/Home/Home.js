@@ -15,7 +15,7 @@ const isDisabled = !value
         <option value="Mountain Biking">Mountain Biking</option>
         <option value="Backpacking">Backpacking</option>
         <option value="Climbing">Climbing</option>
-        <option value="Custom">Custom</option>
+        <option value="Everything">Custom</option>
       </select>
       <button className='trip-submit' onClick={createList} disabled={isDisabled}>SUBMIT</button>
       <Link to='mylist' className='mylist-btn'>
