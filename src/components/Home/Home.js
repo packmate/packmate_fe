@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Home = ({ createList, onChange, value }) => {
 const isDisabled = !value
@@ -26,3 +27,9 @@ const isDisabled = !value
 }
 
 export default Home
+
+Home.propTypes = {
+  createList: PropTypes.isRequired,
+  onChange: PropTypes.isRequired,
+  value: PropTypes.string.isRequired
+}
