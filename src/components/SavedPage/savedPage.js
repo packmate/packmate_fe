@@ -1,8 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './savedPage.css';
 
 class SavedPage extends React.Component {
+  static propTypes = {
+    savedLists: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        items: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            packed: PropTypes.bool.isRequired,
+          })
+        ).isRequired,
+      })
+    ).isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,6 +33,7 @@ class SavedPage extends React.Component {
     } else {
       const selectedList = this.state.savedLists.find((list) => list.name === listName);
       this.setState({ selectedList });
+      console.log(selectedList.items);
     }
   };
 
@@ -63,19 +80,23 @@ class SavedPage extends React.Component {
 
   render() {
     const { savedLists, selectedList } = this.state;
-    const listName = selectedList ? selectedList.name : "My List";
+    const listName = selectedList ? selectedList.name : 'My List';
     const showBackButton = selectedList && selectedList.items && selectedList.items.length > 0;
-    const allItemsChecked = selectedList && selectedList.items && selectedList.items.every(item => item.packed);
+    const allItemsChecked = selectedList && selectedList.items && selectedList.items.every((item) => item.packed);
 
     return (
       <div>
         {showBackButton ? (
           <div className="button-container">
-            <Link to="/mylist" className="back-button">Back to Saved Lists</Link>
+            <Link to="/mylist" className="back-button">
+              Back to Saved Lists
+            </Link>
           </div>
         ) : (
           <div className="button-container">
-            <Link to="/" className="home-button">Back to Home</Link>
+            <Link to="/" className="home-button">
+              Back to Home
+            </Link>
           </div>
         )}
         {selectedList ? (
@@ -84,14 +105,14 @@ class SavedPage extends React.Component {
             <ul className="item-list">
               {selectedList.items.map((item) => (
                 <li key={item.id}>
-                  <label className={item.packed ? "item-packed" : ""}>
+                  <label className={item.packed ? 'item-packed' : ''}>
                     <input
                       type="checkbox"
                       className="checkbox"
                       checked={item.packed}
                       onChange={() => this.handleItemToggle(item.id)}
                     />
-                    <span className={item.packed ? "item-crossed" : ""}>{item.name}</span>
+                    <span className={item.packed ? 'item-crossed' : ''}>{item.name}</span>
                     {item.packed && <span className="check-mark"></span>}
                   </label>
                 </li>
@@ -113,10 +134,7 @@ class SavedPage extends React.Component {
                 <ul>
                   {savedLists.map((list, index) => (
                     <li key={index}>
-                      <button
-                        className="list-name-buttons"
-                        onClick={() => this.handleListClick(list.name)}
-                      >
+                      <button className="list-name-buttons" onClick={() => this.handleListClick(list.name)}>
                         {list.name}
                       </button>
                     </li>

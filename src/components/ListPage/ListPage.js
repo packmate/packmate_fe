@@ -1,9 +1,12 @@
+
 import React, { useState } from "react";
 import "./ListPage.css";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ListPage = ({
+
+
     packItems,
     selectedItems,
     handleCheckboxChange,
@@ -19,38 +22,73 @@ const ListPage = ({
     const [customItems, setCustomItems] = useState([]);
 
     const handleButtonClick = () => {
-        handleSaveList(listName, selectedItems);
-        history.push("/mylist");
-        resetState();
-    };
+    const allItems = [...selectedItems, ...customItems]; // Combine packItems and customItems
+    console.log("All Items:", allItems);
+    handleSaveList(listName, selectedItems);
+    history.push("/mylist");
+    resetState();
+  };
 
 
     const handleAddCustomItem = () => {
-        if (customItem.trim() !== "") {
-            setCustomItems([...customItems, customItem.trim()]);
-            setCustomItem("");
-        }
-    };
+    if (customItem.trim() !== "") {
+      const newItem = {
+        id: Math.random().toString(36).substring(7),
+        name: customItem.trim(),
+        packed: false,
+      };
+      setCustomItems([...customItems, newItem]);
+      setCustomItem("");
+      handleCheckboxChange(newItem.id);
+    }
+  };
 
 
 
 const displayCustomItems = () => {
-    return customItems.map((item, index) => (
-        <div key={index}>
-            <input
-                type="checkbox"
-                checked={selectedItems.includes(item)}
-                onChange={() => handleCheckboxChange(item)}
-            />
-            <span>{item}</span>
-        </div>
-      ));
-    };
+    return customItems.map((item) => (
+      <div key={item.id}>
+        <label>
+          <input
+            type="checkbox"
+            checked={selectedItems.includes(item.id)}
+            onChange={() => handleCheckboxChange(item.id)}
+          />
+          <span>{item.name}</span>
+        </label>
+      </div>
+    ));
+  };
 
-return (
+
+  const allItems = [...packItems, ...customItems]; // Combine packItems and customItems
+
+  return (
     <div>
-        <input
+      <input
+        type="text"
+        value={listName}
+        onChange={handleNameChange}
+        placeholder="Enter List Name"
+        className="list-name-input"
+      />
+      <div className="list-name-container">
+        {allItems.map((item) => (
+          <div key={item.id}>
+            <label>
+              <input
+                type="checkbox"
+                checked={selectedItems.includes(item.id)}
+                onChange={() => handleCheckboxChange(item.id)}
+              />
+              <span className="item-name">{item.name}</span>
+            </label>
+          </div>
+        ))}
+        <div>
+          <input
             type="text"
+
             value={listName}
             onChange={handleNameChange}
             placeholder="Enter List Name"
@@ -104,13 +142,14 @@ return (
                     <button className="add-item" onClick={handleAddCustomItem}>Add Item</button>
                 </div>
             </div>
-            {!formValid && <p className="invalid-form">Please fill out the list name and select at least one item!</p>}
+            {!formValid && (<p className="invalid-form">Please fill out the list name and select at least one item!</p>)}
 
         <button disabled={!formValid} onClick={handleButtonClick} className="submit-list-button">Submit</button>
     </div>
 
 
     );
+
 };
 
 ListPage.propTypes = {
@@ -125,3 +164,4 @@ ListPage.propTypes = {
 };
 
 export default ListPage;
+
