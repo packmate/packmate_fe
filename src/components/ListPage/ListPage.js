@@ -32,22 +32,49 @@ const ListPage = ({
         }
     };
 
-    const displayCustomItems = () => {
-        return customItems.map((item, index) => (
-            <div key={index}>
+
+
+const displayCustomItems = () => {
+    return customItems.map((item, index) => (
+        <div key={index}>
+            <input
+                type="checkbox"
+                checked={selectedItems.includes(item)}
+                onChange={() => handleCheckboxChange(item)}
+            />
+            <span>{item}</span>
+        </div>
+      ));
+    };
+
+return (
+    <div>
+        <input
+            type="text"
+            value={listName}
+            onChange={handleNameChange}
+            placeholder="Enter List Name"
+            className="list-name-input"
+        />
+        <div className="list-name-container">
+            {packItems.map((item) => (
+                <div key={item.id}>
+
+
                 <input
                     type="checkbox"
                     checked={selectedItems.includes(item)}
                     onChange={() => handleCheckboxChange(item)}
                 />
-                <span>{item}</span>
-            </div>
-        ));
-    };
 
-    return (
-        <div>
-            <input
+
+                <span className="item-name">{item.name}</span>
+                </div>
+            ))}
+            {displayCustomItems()}
+            <div>
+                <input
+
                 type="text"
                 value={listName}
                 onChange={handleNameChange}
@@ -78,8 +105,11 @@ const ListPage = ({
                 </div>
             </div>
             {!formValid && <p className="invalid-form">Please fill out the list name and select at least one item!</p>}
-            <button disabled={!formValid} onClick={handleButtonClick} className="submit-list-button">Submit</button>
-        </div>
+
+        <button disabled={!formValid} onClick={handleButtonClick} className="submit-list-button">Submit</button>
+    </div>
+
+
     );
 };
 
