@@ -49,6 +49,26 @@ describe('List Page', () => {
     cy.visit("localhost:3000/mylists")
   })
 
+  it('should require you to enter a list name and select at least one item before you can hit submit', () => {
+    cy.get(".trip-dropdown").select('Camping')
+    cy.get(".trip-submit").click()
+    cy.wait("@fetchItems")
+    cy.get('input[type="text"]').first().type("My List")
+    cy.get('.submit-list-button').should('be.disabled');
+  })
+
+  it('should clear all checked boxes if you navigate to different pages', () => {
+    cy.get('.trip-dropdown').select('Camping');
+    cy.get(".trip-submit").click()
+    cy.wait('@fetchItems');
+    cy.get('input[type="checkbox"]').first().check();
+    cy.get('input[type="text"]').first().type("My List");
+    cy.get('.submit-list-button').click();
+    cy.wait(500);
+    cy.go('back')
+    cy.get('input[type="checkbox"]').should('not.be.checked');
+  })
+
 });
 
 // context('when the packing items API fails', () => {
