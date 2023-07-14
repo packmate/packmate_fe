@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import "./ListPage.css";
 import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+
 
 const ListPage = ({
 
@@ -153,6 +154,17 @@ const displayCustomItems = () => {
 };
 
 ListPage.propTypes = {
+    packItems: PropTypes.array.isRequired,
+    selectedItems: PropTypes.array.isRequired,
+    handleCheckboxChange: PropTypes.func.isRequired,
+    handleNameChange: PropTypes.func.isRequired,
+    listName: PropTypes.string.isRequired,
+    handleSaveList: PropTypes.func.isRequired,
+    resetState: PropTypes.func.isRequired,
+    formValid: PropTypes.bool.isRequired,
+};
+
+  ListPage.propTypes = {
     packItems: PropTypes.array.isRequired,
     selectedItems: PropTypes.array.isRequired,
     handleCheckboxChange: PropTypes.func.isRequired,
