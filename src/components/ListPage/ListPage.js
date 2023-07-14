@@ -65,13 +65,16 @@ return (
                 </div>
             ))}
             {displayCustomItems()}
-            <input
+            <div>
+                <input
                 type="text"
                 value={customItem}
                 onChange={(e) => setCustomItem(e.target.value)}
                 placeholder="Enter custom item"
+                className="custom-item-input"
             />
-            <button onClick={handleAddCustomItem}>Add Item</button>
+            <button className="add-item" onClick={handleAddCustomItem}>Add Item</button>
+                </div>
         </div>
             {!formValid && <p className="invalid-form">Please fill out the list name and select at least one item!</p>}
         <button disabled={!formValid} onClick={handleButtonClick} className="submit-list-button">Submit</button>
