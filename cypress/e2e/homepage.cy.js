@@ -5,9 +5,9 @@ describe('Home Page', () => {
       fixture: 'sampleData.json'
     })
     cy.visit("localhost:3000")
-  });
+  })
 
-  it.skip('should open up to the home page and user should see logo, app name, dropdown, submit and saved list btn', () => {
+  it('should open up to the home page and user should see logo, app name, dropdown, submit and saved list btn', () => {
     cy.get('.logo').should('have.attr', 'alt', 'Packmate Logo of a suitcase')
     cy.get('.app-name').contains('PackMate')
     cy.get('.trip-dropdown').should('contain', 'Camping')
@@ -22,7 +22,7 @@ describe('Home Page', () => {
     cy.get('.saved-lists-btn').contains('Saved Lists')
   })
 
-  it.skip('user should be able to select a trip and get 4 items back', () => {
+  it('user should be able to select a trip and get 4 items back', () => {
     cy.get('.trip-dropdown').select('Kayaking')
     cy.get('.trip-submit').click()
     cy.get('.list-name-input').should('have.attr', 'placeholder', 'Enter List Name')
@@ -36,7 +36,7 @@ describe('Home Page', () => {
     cy.get('.submit-list-button').contains('Submit')
   })
 
-  it.skip('a user should start at home and click the saved list button and be taken to the saved list page', () => {
+  it('a user should start at home and click the saved list button and be taken to the saved list page', () => {
     cy.get('.saved-lists-btn').contains('Saved Lists').click()
     cy.get('.home-button').contains('Back to Home')
     cy.get('.saved-header').contains('My List')
