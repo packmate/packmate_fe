@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
+
+.error-container{
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  border: 2px solid rgb(13, 63, 13);
+  border-radius: 25px;
+  background-color: rgba(240, 248, 255, 0.6);
+  font-family: "Cabin Sketch", cursive;
+  color: rgb(59, 40, 12);
+  font-size:4rem;
+  font-weight: 600;
+  margin: 2em auto;
+} 
