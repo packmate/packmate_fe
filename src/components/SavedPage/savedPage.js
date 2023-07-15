@@ -88,7 +88,7 @@ const SavedPage = ({ savedLists }) => {
                     onChange={() => handleItemToggle(item.id)}
                   />
                   <span className={item.packed ? 'item-crossed' : ''}>
-                    {item.name ? item.name : `Custom Item: ${customNum++}`}
+                    {item.name ? item.name : `Custom Item ${customNum++}`}
                   </span>
                   {item.packed && <span className="check-mark"></span>}
                 </label>
