@@ -29,7 +29,7 @@ const isDisabled = !value
 export default Home
 
 Home.propTypes = {
-  createList: PropTypes.isRequired,
-  onChange: PropTypes.isRequired,
+  createList: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired
 }

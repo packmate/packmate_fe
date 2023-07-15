@@ -1,0 +1,22 @@
+{
+  "data": {
+    "items": [
+      {
+        "id": "4",
+        "name": "Hiking Boots"
+      },
+      {
+        "id": "5",
+        "name": "Backpack"
+      },
+      {
+        "id": "6",
+        "name": "Water Bottle"
+      },
+      {
+        "id": "10",
+        "name": "Suncreen"
+      }
+    ]
+  }
+}
