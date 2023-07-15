@@ -34,6 +34,9 @@ class App extends React.Component {
       .catch(error => {
         this.setState({ error: error.message });
       });
+      setTimeout(() => {
+        this.setState({ tripSelection: "" });
+      }, 2000)
   }
 
   componentDidUpdate(prevProps, prevState) {
