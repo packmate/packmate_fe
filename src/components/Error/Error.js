@@ -4,7 +4,7 @@ import './Error.css'
 const Error = ({ error }) => {
   return (
     <div className='error-container'>
-      <h1>Something went wrong... Error: {error}</h1>
+      <h1>Something went wrong... {error}</h1>
     </div>
   )
 }
