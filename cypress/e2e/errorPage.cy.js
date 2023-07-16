@@ -1,4 +1,4 @@
-describe('Home Page', () => {
+describe('Error Page', () => {
   beforeEach(() => {
     cy.visit("localhost:3000")
   })

@@ -2,13 +2,11 @@ import React from 'react'
 import './App.css'
 import Error from '../Error/Error'
 import Header from '../header/Header'
-import ReactRouterDom, { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Home from '../Home/Home'
 import SavedPage from '../SavedPage/savedPage'
 import ListPage from '../ListPage/ListPage'
 import fetchItems from '../../apiCall'
-import { useQuery, useMutation } from '@apollo/client'
-import { useHistory } from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
@@ -39,7 +37,7 @@ class App extends React.Component {
       }, 2000)
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (prevState.packItems !== this.state.packItems) {
       this.props.history.push('/lists');
     }
