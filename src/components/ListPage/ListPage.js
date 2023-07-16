@@ -39,20 +39,20 @@ const ListPage = ({
         }
     };
 
-    const displayCustomItems = () => {
-        return customItems.map((item) => (
-            <div key={item.id}>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={selectedItems.includes(item.id)}
-                        onChange={() => handleCheckboxChange(item.id)}
-                    />
-                    <span>{item.name}</span>
-                </label>
-            </div>
-        ));
-    };
+    // const displayCustomItems = () => {
+    //     return customItems.map((item) => (
+    //         <div key={item.id}>
+    //             <label>
+    //                 <input
+    //                     type="checkbox"
+    //                     checked={selectedItems.includes(item.id)}
+    //                     onChange={() => handleCheckboxChange(item.id)}
+    //                 />
+    //                 <span>{item.name}</span>
+    //             </label>
+    //         </div>
+    //     ));
+    // };
 
     const allItems = [...packItems, ...customItems]; // Combine packItems and customItems
 
