@@ -18,10 +18,12 @@ const isDisabled = !value
         <option value="Climbing">Climbing</option>
         <option value="Everything">Custom</option>
       </select>
-      <button className='trip-submit' onClick={createList} disabled={isDisabled}>SUBMIT</button>
-      <Link to='mylist' className='mylist-btn'>
-        <button className='saved-lists-btn'>Saved Lists</button>
-      </Link>
+      <div className='button-container'>
+        <button className='trip-submit' onClick={createList} disabled={isDisabled}>SUBMIT</button>
+        <Link to='mylist' className='mylist-btn'>
+          <button className='saved-lists-btn'>Saved Lists</button>
+        </Link>
+      </div>
     </div>
   )
 }

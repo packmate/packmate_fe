@@ -2,9 +2,8 @@ body {
   margin: 0;
   padding-bottom: 5em;
   height: 100vh;
-  background-image: url('https://c1.wallpaperflare.com/preview/876/681/140/autumn-season-landscape-nature.jpg');
+   background-image: url('https://c1.wallpaperflare.com/preview/876/681/140/autumn-season-landscape-nature.jpg');
   background-size: cover;
-  background-position: center center;
 }
 
 code {
@@ -12,8 +11,8 @@ code {
     monospace;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 810px) {
   body {
-    background-size: contain;
-  }
-}
+    background-size: cover;
+  } 
+ }

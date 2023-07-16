@@ -71,9 +71,6 @@ class App extends React.Component {
     });
   };
 
-
-
-
   handleSaveList = (listName, selectedItems) => {
     const { packItems } = this.state;
     const newList = selectedItems.map((itemId) => { 

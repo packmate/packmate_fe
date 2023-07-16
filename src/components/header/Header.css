@@ -27,3 +27,50 @@
   border-radius: 100px;
   background-color: rgba(240, 248, 255, 0.6);
 }
+
+@media (max-width: 935px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-name {
+    font-size: 4rem;
+  }
+
+  .logo {
+    height: 8em;
+    width: 9em;
+  }
+}
+
+@media (max-width: 520px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-name {
+    font-size: 2.5em;
+  }
+
+  .logo {
+    height: 7em;
+    width: 8em;
+  }
+}
+
+@media (max-width: 350px) {
+  .app-name {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 1.5em;
+    font-size: 2em ;
+  }
+  
+  .logo {
+    height: 6em;
+    width: 7em;
+  }
+}
