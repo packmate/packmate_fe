@@ -37,7 +37,7 @@ class App extends React.Component {
       }, 2000)
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.packItems !== this.state.packItems) {
       this.props.history.push('/lists');
     }

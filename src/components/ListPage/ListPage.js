@@ -19,8 +19,6 @@ const ListPage = ({
 
 
     const handleButtonClick = () => {
-        const allItems = [...selectedItems, ...customItems];
-        // console.log("All Items:", allItems);
         handleSaveList(listName, selectedItems);
         history.push("/mylist");
         resetState();
@@ -33,27 +31,11 @@ const ListPage = ({
                 name: customItem.trim(),
                 packed: false,
             };
-            // console.log("customItems:", customItems);
             setCustomItems([...customItems, newItem]);
             setCustomItem("");
             handleCheckboxChange(newItem.id);
         }
     };
-
-    // const displayCustomItems = () => {
-    //     return customItems.map((item) => (
-    //         <div key={item.id}>
-    //             <label>
-    //                 <input
-    //                     type="checkbox"
-    //                     checked={selectedItems.includes(item.id)}
-    //                     onChange={() => handleCheckboxChange(item.id)}
-    //                 />
-    //                 <span>{item.name}</span>
-    //             </label>
-    //         </div>
-    //     ));
-    // };
 
     const allItems = [...packItems, ...customItems];
 
