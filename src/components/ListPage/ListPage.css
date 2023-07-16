@@ -1,5 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
 
+.list-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .list-name-container {
   border: 2px solid rgb(13, 63, 13);
   border-radius: 25px;
@@ -23,12 +30,6 @@
   font-weight: 600;
 }
 
-.list-page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .submit-list-button, .list-name-input {
   display: flex;
@@ -42,10 +43,18 @@
   font-family: "Rye", cursive;
   background-color: rgba(240, 248, 255, 0.7);
   color: rgb(59, 40, 12);
-  border: 2px solid rgb(13, 63, 13);
 }
 
-.add-item-button, .custom-item-input {
+.submit-list-button, .add-item{
+  cursor: pointer; 
+  transition: box-shadow 0.3s;
+}
+
+.submit-list-button:hover, .add-item:hover {
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
+}
+
+.add-item-button, .custom-item-input, .add-item {
   background-color: rgba(240, 248, 255, 0.7);
   color: rgb(59, 40, 12);
   font-family: "Rye", cursive;
@@ -54,22 +63,24 @@
   font-size: medium;
   height: 30px;
 }
+
 .custom-item-input{
   padding: 5px;
   margin-bottom: 2em;
 }
 
 .list-name-input {
-  width: 15em;
   height: 1em;
+  width: 15em;
   margin: .1em auto;
 }
 
 .invalid-form {
   display: flex;
   justify-content: center;
+  text-align: center;
   margin: auto;
-  width: 45vw;
+  width: 60vw;
   font-size: larger;
   font-family: "Rye", cursive;
   background-color: rgba(240, 248, 255, 0.7);
@@ -77,4 +88,68 @@
   border-radius: 10px;
   border: 2px solid rgb(13, 63, 13);
   margin-top: 1em;
+  padding: .5em;
+}
+
+@media (max-width: 935px) {
+  .list-name-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5em;
+  }
+
+  .item-name {
+    font-size: 1.7em;
+  }
+
+  .list-name-input {
+    width: 10em;
+  }
+}
+
+@media (max-width: 520px) {
+  .list-name-container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 3.5em;
+    width: 80vw;
+    height: 30vh;
+    padding: 1em;
+  }
+
+  .list-name-input {
+    width: 9em;
+    height: .7em;
+  }
+
+  .invalid-form {
+    font-size: 1.1em;
+    padding: .3em;
+    width: 60vw;
+  }
+
+  .submit-list-button {
+  font-size: large;
+  padding-bottom: 1.5em;
+  }
+}
+
+@media (max-width: 350px) { 
+  .list-name-input {
+  width: 7em;
+  height: .7em;
+  font-size: 1.5em
+  }
+  
+  .list-name-input::placeholder {
+    font-size: .7em;
+  }
+  
+  .invalid-form {
+    font-size: 1.1em;
+    padding: .3em;
+    width: 85vw;
+  }
+
+  .item-name {
+    font-size: 1.3em;
+  }
 }

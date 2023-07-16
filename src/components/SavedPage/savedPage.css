@@ -1,7 +1,7 @@
-/* @import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
+@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
 @import url("https://fonts.googleapis.com/css?family=Rye&display=swap");
 
-.saved-header,.items-header, .no-list-message, .list-name-buttons, .item-list, .home-button, .back-button {
+.saved-header, .items-header, .no-list-message, .list-name-buttons, .item-list, .home-button, .back-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,27 +21,55 @@
   display: flex;
 }
 
-.home-button, .back-button {
+.home-button,
+.back-button {
   margin: .1em;
-  width: 15vw;
+  width: 10em;
   font-size: 2em;
+  cursor: pointer; 
+  transition: box-shadow 0.3s;
 }
 
-.back-button{
-  width: 20vw;
+.home-button:hover,
+.back-button:hover {
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
 }
 
 .ready-message {
   font-family: "Rye", cursive;
   font-weight: 100;
+  animation: bounce 1s infinite;
 }
-.no-list-message, .list-name-buttons, .item-list{
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.no-list-message,
+.list-name-buttons,
+.item-list {
   font-size: 3em;
   font-weight: 100;
+  text-align: center;
   width: 18vw;
   margin-top: .5em;
   font-family: "Cabin Sketch", cursive;
   padding: 0;
+}
+
+.list-name-buttons {
+  cursor: pointer; 
+  transition: box-shadow 0.3s;
+}
+
+.list-name-buttons:hover {
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
 }
 
 .item-list label.item-packed {
@@ -63,84 +91,54 @@
   margin-left: 0.5em;
 }
 
- */
- @import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:regular,700);
- @import url("https://fonts.googleapis.com/css?family=Rye&display=swap");
- 
- .saved-header, .items-header, .no-list-message, .list-name-buttons, .item-list, .home-button, .back-button {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 28vw;
-   font-size: 4em;
-   font-family: "Cabin Sketch", cursive;
-   font-weight: 600;
-   color: rgb(59, 40, 12);
-   border: 2px solid rgb(13, 63, 13);
-   border-radius: 25px;
-   background-color: rgba(240, 248, 255, 0.6);
-   margin: 2em auto 0;
-   padding-bottom: .1em;
- }
- 
- .button-container {
-   display: flex;
- }
- 
- .home-button,
- .back-button {
-   margin: .1em;
-   width: 15vw;
-   font-size: 2em;
- }
- 
- .back-button {
-   width: 20vw;
- }
- 
- .ready-message {
-   font-family: "Rye", cursive;
-   font-weight: 100;
-   animation: bounce 1s infinite;
- }
- 
- @keyframes bounce {
-   0%,
-   100% {
-     transform: translateY(0);
-   }
-   50% {
-     transform: translateY(-10px);
-   }
- }
- 
- .no-list-message,
- .list-name-buttons,
- .item-list {
-   font-size: 3em;
-   font-weight: 100;
-   width: 18vw;
-   margin-top: .5em;
-   font-family: "Cabin Sketch", cursive;
-   padding: 0;
- }
- 
- .item-list label.item-packed {
-   text-decoration: line-through;
- }
- 
- .item-list label.item-packed .check-mark {
-   visibility: visible;
- }
- 
- .item-list {
-   width: 50vw;
-   display: flex;
-   flex-direction: column;
-   list-style: none;
- }
- 
- .check-mark {
-   margin-left: 0.5em;
- }
- 
+@media (max-width: 935px) {
+  
+  .saved-header, .no-list-message{
+    font-size: 2.5em;
+  }
+  .no-list-message{
+    width: 38vw;
+  }
+}
+
+@media (max-width: 520px) {
+  .no-list-message{
+    width: 50vw;
+  }
+
+  .saved-header{
+    width: 40vw;
+  }
+
+  .list-name-buttons{
+    width: 60vw;
+    margin-right: 1.9em;
+  }
+}
+
+@media (max-width: 350px) { 
+  .home-button, .back-button {
+    width: 9em;
+    font-size: 1.5em;
+  }
+
+  .item-list {
+    font-size: 1.4em;
+    width: 80vw;
+    font-size: 1.9em;
+  }
+
+  .saved-header, .no-list-message {
+    font-size: 1.9em;
+    width: 80vw;
+  }
+
+  .list-name-buttons{
+    width: 75vw;
+    margin-right: 30em;
+  }
+
+  .saved-header{
+    width: 65vw;
+  }
+}

@@ -8,7 +8,10 @@
   height: 50vh;
   width: 100%;
   text-align: center;
-  
+}
+
+.button-container {
+  flex-direction: row;
 }
 
 .trip-dropdown {
@@ -22,7 +25,8 @@
   padding-left: 1em;
 }
 
-.trip-submit, .saved-lists-btn {
+.trip-submit,
+.saved-lists-btn {
   margin-left: 1em;
   border-radius: 15px;
   height: 3.5em;
@@ -31,5 +35,64 @@
   font-family: "Rye", cursive;
   background-color: rgba(240, 248, 255, 0.7);
   color: rgb(59, 40, 12);
-  
+  border: 2px solid rgb(13, 63, 13);
 }
+.trip-submit:hover,
+.saved-lists-btn:hover{
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
+}
+@media (max-width: 935px) {
+  .dropdown {
+    flex-direction: column;
+    justify-content: baseline;
+  }
+  .trip-submit,
+  .saved-lists-btn {
+    margin-top: 0.5em;
+    height: 3em;
+    width: 10em;
+    font-size: x-large;
+  }
+}
+
+@media (max-width: 760px) {
+  .trip-dropdown {
+    height: 3em;
+    width: 16em;
+    font-size: 2em;
+  }
+
+  .trip-submit,
+  .saved-lists-btn {
+    margin-top: 0.5em;
+    height: 5em;
+    width: 7.5em;
+    font-size: large;
+  }
+}
+
+@media (max-width: 520px) {
+  .trip-dropdown {
+    height: 1.5em;
+    width: 15em;
+    font-size: 1.5em;
+  }
+
+  .dropdown {
+    flex-direction: column;
+  }
+
+  .trip-submit,
+  .saved-lists-btn {
+    margin-top: 0.5em;
+    height: 3em;
+    width: 5.5em;
+    font-size: small;
+  }
+}
+
+@media (max-width: 350px) {
+  .trip-dropdown {
+    width: 10em;
+  }
+ }

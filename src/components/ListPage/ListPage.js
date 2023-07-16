@@ -94,7 +94,7 @@ const ListPage = ({
             </div>
             {!formValid && (
                 <p className="invalid-form">
-                    Please fill out the list name and select at least one item!
+                    Please fill out the list name and scroll down to select at least one item!
                 </p>
             )}
             <button
