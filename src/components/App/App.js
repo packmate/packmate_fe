@@ -37,7 +37,7 @@ class App extends React.Component {
       }, 2000)
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.packItems !== this.state.packItems) {
       this.props.history.push('/lists');
     }
@@ -68,9 +68,6 @@ class App extends React.Component {
       this.setState({ formValid: isFormValid });
     });
   };
-
-
-
 
   handleSaveList = (listName, selectedItems) => {
     const { packItems } = this.state;
