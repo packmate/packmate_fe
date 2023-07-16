@@ -53,9 +53,10 @@ class App extends React.Component {
 
   handleCheckboxChange = (itemId) => {
     this.setState((prevState) => {
+    
       const { selectedItems } = prevState;
       let updatedSelectedItems;
-      if (selectedItems.includes(itemId)) {
+      if (selectedItems.includes(itemId)) { 
         updatedSelectedItems = selectedItems.filter((id) => id !== itemId);
       } else {
         updatedSelectedItems = [...selectedItems, itemId];
@@ -73,7 +74,7 @@ class App extends React.Component {
 
   handleSaveList = (listName, selectedItems) => {
     const { packItems } = this.state;
-    const newList = selectedItems.map((itemId) => {
+    const newList = selectedItems.map((itemId) => { 
       const item = packItems.find((item) => item.id === itemId);
       return { ...item, packed: false };
     });

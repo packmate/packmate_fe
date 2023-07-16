@@ -19,8 +19,8 @@ const ListPage = ({
 
 
     const handleButtonClick = () => {
-        const allItems = [...selectedItems, ...customItems]; // Combine packItems and customItems
-        console.log("All Items:", allItems);
+        const allItems = [...selectedItems, ...customItems];
+        // console.log("All Items:", allItems);
         handleSaveList(listName, selectedItems);
         history.push("/mylist");
         resetState();
@@ -33,6 +33,7 @@ const ListPage = ({
                 name: customItem.trim(),
                 packed: false,
             };
+            // console.log("customItems:", customItems);
             setCustomItems([...customItems, newItem]);
             setCustomItem("");
             handleCheckboxChange(newItem.id);
@@ -54,7 +55,7 @@ const ListPage = ({
     //     ));
     // };
 
-    const allItems = [...packItems, ...customItems]; // Combine packItems and customItems
+    const allItems = [...packItems, ...customItems];
 
     return (
         <div>
@@ -119,5 +120,3 @@ ListPage.propTypes = {
 };
 
 export default ListPage;
-
-
