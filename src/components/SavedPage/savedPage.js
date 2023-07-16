@@ -33,7 +33,6 @@ class SavedPage extends React.Component {
     } else {
       const selectedList = this.state.savedLists.find((list) => list.name === listName);
       this.setState({ selectedList });
-      console.log(selectedList.items);
     }
   };
 

@@ -19,8 +19,7 @@ const ListPage = ({
 
 
     const handleButtonClick = () => {
-        const allItems = [...selectedItems, ...customItems]; // Combine packItems and customItems
-        console.log("All Items:", allItems);
+        // const allItems = [...selectedItems, ...customItems]; // Combine packItems and customItems
         handleSaveList(listName, selectedItems);
         history.push("/mylist");
         resetState();
