@@ -26,6 +26,13 @@
   margin: .1em;
   width: 10em;
   font-size: 2em;
+  cursor: pointer; 
+  transition: box-shadow 0.3s;
+}
+
+.home-button:hover,
+.back-button:hover {
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
 }
 
 .ready-message {
@@ -54,6 +61,15 @@
   margin-top: .5em;
   font-family: "Cabin Sketch", cursive;
   padding: 0;
+}
+
+.list-name-buttons {
+  cursor: pointer; 
+  transition: box-shadow 0.3s;
+}
+
+.list-name-buttons:hover {
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
 }
 
 .item-list label.item-packed {

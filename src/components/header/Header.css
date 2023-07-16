@@ -26,6 +26,23 @@
   border: 2px solid rgb(13, 63, 13);
   border-radius: 100px;
   background-color: rgba(240, 248, 255, 0.6);
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.logo:hover {
+  animation: bounce 1s infinite; 
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @media (max-width: 935px) {

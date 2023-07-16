@@ -37,7 +37,10 @@
   color: rgb(59, 40, 12);
   border: 2px solid rgb(13, 63, 13);
 }
-
+.trip-submit:hover,
+.saved-lists-btn:hover{
+  box-shadow: 0 0 10px rgba(211, 222, 7, 1.7);
+}
 @media (max-width: 935px) {
   .dropdown {
     flex-direction: column;
