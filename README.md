@@ -1,73 +1,67 @@
-# Getting Started with Create React App
+# PackMate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+Welcome to PackMate, your ultimate outdoor packing companion!  Designed for outdoor enthusiasts, PackMate makes packing for your adventures a breeze.
 
-## Available Scripts
+Create your personalized packing list by selecting items from our comprehensive database. We've got everything covered, from camping gear to hiking essentials. Plus, you can easily add your custom items to the list.
 
-In the project directory, you can run:
+Check off items as you pack and stay organized throughout your trip. No more forgetting important gear or wasting time on last-minute searches. PackMate keeps you on track.
 
-### `npm start`
+Visit PackMate now and say goodbye to packing stress and hello to the stress free outdoors! Let us handle the list, so you can focus on the adventure ahead.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Deployment
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Check out : [PackMate](https://packmate-fe.vercel.app/)
 
-### `npm test`
+## Contributors
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - Kelli Watkins [GitHub](https://github.com/klwats) / [LinkedIn](https://www.linkedin.com/in/kelli-watkins-1b73418b/)
+  - Nathan Chamberlain [GitHub](https://github.com/CodeMeister362) / [LinkedIn](https://www.linkedin.com/in/chamberlainux/)
+  - Rachel Brendel [GitHub](https://github.com/brendel-r) / [LinkedIn](https://www.linkedin.com/in/rachel-brendel/)
 
-### `npm run build`
+## Goals and Objectives
+- Continue building understanding with React fundamentals
+- Worth together with a BE team
+- Learn and implement graphQL
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
+  - Trip Type selector
+  - Build your own packing list from a list of items based on your type of trip
+  - Custom Item input 
+  - Saved list allow you to check off items as you pack
+  - Message displayed when all items are checked off your list and your ready for your adventure
+  
+## Context
+PackMate is a robust outdoor packing app that has been meticulously developed using React, JavaScript, HTML, CSS, and GraphQL. With a focus on technical excellence and user experience, PackMate simplifies the packing process for outdoor enthusiasts.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+By leveraging React, PackMate delivers a dynamic and responsive user interface, ensuring a seamless and enjoyable experience for users. The extensive use of JavaScript enhances the app's functionality and interactivity, allowing users to effortlessly create personalized packing lists.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The integration of GraphQL optimizes data querying, enabling efficient retrieval of items from the comprehensive item database. This empowers users to select from a wide range of camping gear, hiking essentials, and custom items, tailored to their specific outdoor activities.
 
-### `npm run eject`
+The use of HTML and CSS in crafting the visual design of PackMate ensures an attractive and user-friendly interface. It creates an intuitive environment where users can easily check off items as they pack, keeping them organized and eliminating the stress of forgetting crucial gear.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To ensure high-quality performance, PackMate is equipped with automated testing through GitHub Actions and Cypress. This meticulous testing process guarantees the reliability and stability of the app, providing users with a seamless packing experience.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+PackMate combines technical expertise and attention to detail to create a powerful and efficient outdoor packing solution. With its intuitive interface, optimized data retrieval, and robust testing framework, PackMate takes the hassle out of packing, allowing users to focus on their thrilling outdoor adventures.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![PackMate Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWg4OWVmbnE0YTNpemcxOXg4OHllMHdhZjdwcHZtZjl2cmZid3Y4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WeXWZsKUBDJaiswuDS/giphy.gif)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Set Up
+1. Fork and clone this repo
+1. `cd` into the file
+1. Run `npm install` followed by `npm start`
 
-## Learn More
+## Technologies
+  - Javascript
+  - HTML
+  - CSS
+  - React
+  - GraphQL
+  - GitHub Actions
+  - Cypress
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-TEST
+## Sources
+  - [MDN](http://developer.mozilla.org/en-US/)
+  - [W3Schools](https://www.w3schools.com/)
+  - [React Docs](https://react.dev/reference/react)
+  - [Cypress Docs](https://docs.cypress.io/guides/overview/why-cypress)
