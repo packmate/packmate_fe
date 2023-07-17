@@ -32,9 +32,9 @@ class App extends React.Component {
       .catch(error => {
         this.setState({ error: error.message });
       });
-      setTimeout(() => {
-        this.setState({ tripSelection: "" });
-      }, 2000)
+    setTimeout(() => {
+      this.setState({ tripSelection: "" });
+    }, 2000)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -53,10 +53,10 @@ class App extends React.Component {
 
   handleCheckboxChange = (itemId) => {
     this.setState((prevState) => {
-    
+
       const { selectedItems } = prevState;
       let updatedSelectedItems;
-      if (selectedItems.includes(itemId)) { 
+      if (selectedItems.includes(itemId)) {
         updatedSelectedItems = selectedItems.filter((id) => id !== itemId);
       } else {
         updatedSelectedItems = [...selectedItems, itemId];
@@ -71,7 +71,7 @@ class App extends React.Component {
 
   handleSaveList = (listName, selectedItems) => {
     const { packItems } = this.state;
-    const newList = selectedItems.map((itemId) => { 
+    const newList = selectedItems.map((itemId) => {
       const item = packItems.find((item) => item.id === itemId);
       return { ...item, packed: false };
     });
@@ -99,31 +99,37 @@ class App extends React.Component {
     const { error, savedLists } = this.state;
 
     return (
+
       <main className='main'>
         <Header />
-        <Switch>
-          <Route exact path='/' component={() =>
-            <Home onChange={this.onChange} createList={this.createList} value={this.state.tripSelection} />}
-          />
-          <Route exact path='/lists'>
-            <ListPage
-              packItems={this.state.packItems}
-              selectedItems={this.state.selectedItems}
-              handleCheckboxChange={this.handleCheckboxChange}
-              handleSaveList={this.handleSaveList}
-              handleNameChange={this.handleNameChange}
-              listName={this.state.listName}
-              resetState={this.resetState}
-              formValid={this.state.formValid}
+        {this.state.error ? (
+          <Error />
+        ) : (
+          <Switch>
+            <Route exact path='/' component={() =>
+              <Home onChange={this.onChange} createList={this.createList} value={this.state.tripSelection} />}
             />
-          </Route>
-          <Route exact path="/mylist" component={() =>
-            <SavedPage savedLists={savedLists} />} />
-          <Route exact path='/mylist' component={SavedPage} />
-          <Route path='*' render={() => <Error error={error} />} />
-        </Switch>
+            <Route exact path='/lists'>
+              <ListPage
+                packItems={this.state.packItems}
+                selectedItems={this.state.selectedItems}
+                handleCheckboxChange={this.handleCheckboxChange}
+                handleSaveList={this.handleSaveList}
+                handleNameChange={this.handleNameChange}
+                listName={this.state.listName}
+                resetState={this.resetState}
+                formValid={this.state.formValid}
+              />
+            </Route>
+            <Route exact path="/mylist" component={() =>
+              <SavedPage savedLists={savedLists} />} />
+            <Route exact path='/mylist' component={SavedPage} />
+            <Route path='*' render={() => (<Error error={error} />
+            )} />
+          </Switch>
+        )}
       </main>
-    );
+    )
   }
 }
 
